@@ -30,7 +30,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/api/login/**", "/api/user/save").permitAll();
+        http.authorizeRequests().antMatchers("/api/login/**", "/api/user/save", "/api/role/save").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         return http.build();
     }
