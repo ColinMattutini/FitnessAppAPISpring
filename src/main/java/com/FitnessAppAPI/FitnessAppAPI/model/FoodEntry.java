@@ -3,8 +3,6 @@ package com.FitnessAppAPI.FitnessAppAPI.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Fetch;
-import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
 
@@ -12,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class CalorieTracker {
+public class FoodEntry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
