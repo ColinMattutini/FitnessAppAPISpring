@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -60,6 +61,11 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     @Override
     public Role saveRole(Role role) {
         return roleRepo.save(role);
+    }
+
+    @Override
+    public List<AppUser> getAppUsers() {
+        return appUserRepo.findAll();
     }
 
     @Override
