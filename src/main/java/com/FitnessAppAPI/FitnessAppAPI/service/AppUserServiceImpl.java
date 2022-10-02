@@ -3,6 +3,7 @@ package com.FitnessAppAPI.FitnessAppAPI.service;
 import com.FitnessAppAPI.FitnessAppAPI.model.AppUser;
 import com.FitnessAppAPI.FitnessAppAPI.model.Role;
 import com.FitnessAppAPI.FitnessAppAPI.repo.AppUserRepo;
+import com.FitnessAppAPI.FitnessAppAPI.repo.RoleRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,6 +24,7 @@ import java.util.Collection;
 public class AppUserServiceImpl implements AppUserService, UserDetailsService {
 
     private final AppUserRepo appUserRepo;
+    private final RoleRepo roleRepo;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -57,12 +59,14 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
 
     @Override
     public Role saveRole(Role role) {
-        return null;
+        return roleRepo.save(role);
     }
 
     @Override
     public void addRoleToAppUser(String username, String roleName) {
-
+        AppUser appUser = appUserRepo.findByUsername(username);
+        Role role = roleRepo.findByName(roleName);
+        appUser.getRoles().add(role);
     }
 
 
