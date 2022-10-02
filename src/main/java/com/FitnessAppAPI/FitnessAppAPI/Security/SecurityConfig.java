@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableMBeanExport;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,7 +26,7 @@ import java.util.Arrays;
 public class SecurityConfig {
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final AuthenticationConfiguration authenticationConfiguration;
+    private final AuthenticationConfiguration configuration;
     @Bean
     @CrossOrigin(origins = "http://localhost:3000")
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -33,6 +35,16 @@ public class SecurityConfig {
         http.authorizeRequests().antMatchers("/api/login/**", "/api/user/save", "/api/role/save").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         return http.build();
+    }
+
+    @Bean
+    AuthenticationManager authenticationManager() throws Exception{
+        return configuration.getAuthenticationManager();
+    }
+
+    @Bean
+    void configure(AuthenticationManagerBuilder builder) throws Exception{
+        builder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Bean
