@@ -2,6 +2,7 @@ package com.FitnessAppAPI.FitnessAppAPI.Security;
 
 
 import com.FitnessAppAPI.FitnessAppAPI.util.CustomAuthenticationFilter;
+import com.FitnessAppAPI.FitnessAppAPI.util.CustomAuthorizationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -37,8 +38,10 @@ public class SecurityConfig {
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         http.cors().and().csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/api/login/**", "/api/user/save", "/api/role/save").permitAll();
+        http.authorizeRequests().antMatchers("/api/login/**", "/api/user/save/**", "/api/role/save/**", "/api/token/refresh/**").permitAll();
+        http.authorizeRequests().antMatchers("/api/users/**").hasAnyAuthority("ROLE_USER");
         http.authorizeRequests().anyRequest().authenticated();
+        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
         http.addFilter(customAuthenticationFilter);
         return http.build();
     }
