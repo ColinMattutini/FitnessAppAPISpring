@@ -17,9 +17,9 @@ public class FoodEntry {
     private Long entryId;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "appUser_id")
+    @JoinColumn(name = "appUser_username")
     private AppUser appUser;
     private String foodName;
-    private int calories;
+    private Integer calories;
     private String date;
 }
