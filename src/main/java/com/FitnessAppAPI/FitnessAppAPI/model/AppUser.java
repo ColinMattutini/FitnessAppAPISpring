@@ -12,6 +12,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @Entity
 @Data
+@Table(name = "app_user")
 public class AppUser {
 
     @Id
