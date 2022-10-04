@@ -31,6 +31,11 @@ public class FoodEntryController {
 
     @GetMapping("/user/{username}/foodEntry")
     public List<FoodEntry> getFoodEntries(@PathVariable String username){
-        return foodEntryService.getFoodEntries(username);
+        if(appUserService.getAppUser(username).equals(null)){
+            throw new IllegalArgumentException("Username does not exist in Database.");
+        }else{
+            return foodEntryService.getFoodEntries(username);
+        }
+
     }
 }
