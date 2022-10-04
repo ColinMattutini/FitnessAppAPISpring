@@ -1,11 +1,15 @@
 package com.FitnessAppAPI.FitnessAppAPI.service;
 
+import com.FitnessAppAPI.FitnessAppAPI.model.AppUser;
 import com.FitnessAppAPI.FitnessAppAPI.model.FoodEntry;
 import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface FoodEntryService {
     void saveFoodEntry(FoodEntry foodEntry);
     FoodEntry getFoodEntryByUsername(String username);
+    List<FoodEntry> getFoodEntries(String username);
     //Get food entries by userId... take in username... already in token... change foodEntry entity to have
     //foreign key of username not userId?
 
