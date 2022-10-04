@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "food_entry")
 public class FoodEntry {
 
     @Id
@@ -17,8 +18,10 @@ public class FoodEntry {
     private Long entryId;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "appUser_username")
+    @JoinColumn(name = "app_user_username")
     private AppUser appUser;
+
+    private String username;
     private String foodName;
     private Integer calories;
     private String date;
