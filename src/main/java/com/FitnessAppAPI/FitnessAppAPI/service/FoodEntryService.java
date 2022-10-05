@@ -10,6 +10,8 @@ public interface FoodEntryService {
     void saveFoodEntry(FoodEntry foodEntry);
     FoodEntry getFoodEntryByUsername(String username);
     List<FoodEntry> getFoodEntries(String username);
+    void updateFoodEntry(FoodEntry foodEntry, Long id);
+    void deleteFoodEntry(Long id);
     //Get food entries by userId... take in username... already in token... change foodEntry entity to have
     //foreign key of username not userId?
 
