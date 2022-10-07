@@ -15,6 +15,7 @@ public class FoodEntryController {
     private final AppUserServiceImpl appUserService;
 
     @PostMapping("/user/{username}/foodEntry")
+    @CrossOrigin(origins = "http://localhost:3000/homepage")
     public void addFoodEntry(@RequestBody FoodEntry foodEntry, @PathVariable String username){
         if(appUserService.getAppUser(username).equals(null)){
             throw new IllegalArgumentException("Username does not exist in Database.");
