@@ -1,10 +1,13 @@
 package com.FitnessAppAPI.FitnessAppAPI.controller;
 
+import com.FitnessAppAPI.FitnessAppAPI.model.AppUser;
 import com.FitnessAppAPI.FitnessAppAPI.model.FoodEntry;
 import com.FitnessAppAPI.FitnessAppAPI.service.AppUserServiceImpl;
 import com.FitnessAppAPI.FitnessAppAPI.service.FoodEntryServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -20,7 +23,9 @@ public class FoodEntryController {
         if(appUserService.getAppUser(username).equals(null)){
             throw new IllegalArgumentException("Username does not exist in Database.");
         }else{
+            AppUser appUser = appUserService.getAppUser(username);
             foodEntry.setUsername(username);
+            foodEntry.setAppUser(appUser);
             foodEntryService.saveFoodEntry(foodEntry);
         }
 

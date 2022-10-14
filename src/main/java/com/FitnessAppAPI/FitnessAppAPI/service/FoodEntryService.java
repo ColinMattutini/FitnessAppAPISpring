@@ -4,6 +4,7 @@ import com.FitnessAppAPI.FitnessAppAPI.model.AppUser;
 import com.FitnessAppAPI.FitnessAppAPI.model.FoodEntry;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Date;
 import java.util.List;
 
 public interface FoodEntryService {

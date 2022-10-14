@@ -17,10 +17,12 @@ public class FoodEntry {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long entryId;
 
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "app_user_username")
+//    @JoinColumn(name = "id", referencedColumnName = "id",insertable = false, updatable = false)
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "app_user_username")
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private AppUser appUser;
-
     private String username;
     private String foodName;
     private Integer calories;

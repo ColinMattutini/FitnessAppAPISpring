@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +33,8 @@ public class FoodEntryServiceImpl implements FoodEntryService{
             foodEntryToUpdate.setFoodName(foodEntry.getFoodName());
             foodEntryToUpdate.setUsername(foodEntryToUpdate.getUsername());
             foodEntryToUpdate.setCalories(foodEntry.getCalories());
+            foodEntryToUpdate.setDate(foodEntry.getDate());
+            foodEntryToUpdate.setAppUser(foodEntryToUpdate.getAppUser());
             foodEntryRepo.save(foodEntryToUpdate);
 
         } else{throw new IllegalArgumentException("Food Entry not Found!");}
