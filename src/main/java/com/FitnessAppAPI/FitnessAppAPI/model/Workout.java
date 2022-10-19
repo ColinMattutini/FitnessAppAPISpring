@@ -23,7 +23,7 @@ public class Workout {
 
     @JsonView(View.Summary.class)
     private String workoutName;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private AppUser appUser;
 
