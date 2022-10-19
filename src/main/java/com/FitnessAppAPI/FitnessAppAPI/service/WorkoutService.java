@@ -10,7 +10,7 @@ public interface WorkoutService{
 
     void saveWorkout(Workout workout);
     List<Workout> getAllWorkouts(AppUser appUser);
-    void deleteWorkout(Long id);
+    void deleteWorkout(Workout workout);
     void updateWorkout(Workout workout, Long id);
 
     Workout getWorkoutById(Long id);

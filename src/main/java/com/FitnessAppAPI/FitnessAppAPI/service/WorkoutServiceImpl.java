@@ -31,8 +31,8 @@ public class WorkoutServiceImpl implements WorkoutService{
     }
 
     @Override
-    public void deleteWorkout(Long id) {
-
+    public void deleteWorkout(Workout workout) {
+        workoutRepo.delete(workout);
     }
 
     @Override
