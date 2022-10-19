@@ -26,6 +26,11 @@ public class ExerciseServiceImpl implements ExerciseService{
         exerciseRepo.delete(exercise);
     }
 
+    @Override
+    public Exercise getExercise(Long id) {
+        return exerciseRepo.findByexerciseId(id);
+    }
+
 //    @Override
 //    public Exercise getExercise(Long workoutId) {
 //        return exerciseRepo.getById(workoutId);

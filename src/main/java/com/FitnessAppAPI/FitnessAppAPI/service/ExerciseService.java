@@ -6,6 +6,6 @@ public interface ExerciseService {
 
     void saveExercise(Exercise exercise);
     void deleteExercise(Exercise exercise);
-//    Exercise getExercise(Long id);
+    Exercise getExercise(Long id);
 
 }
