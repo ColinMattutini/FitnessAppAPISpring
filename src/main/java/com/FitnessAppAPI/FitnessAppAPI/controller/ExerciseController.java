@@ -35,4 +35,9 @@ public class ExerciseController {
         return exerciseService.findExercisesByWorkout(workout);
     }
 
+    @DeleteMapping("/user/{username}/workout/{workoutId}/exercise/{exerciseId}")
+    public void deleteExercise(@PathVariable Long exerciseId){
+        exerciseService.deleteExercise(exerciseService.getExercise(exerciseId));
+    }
+
 }
