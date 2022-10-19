@@ -24,7 +24,7 @@ public class Exercise {
     private Integer sets;
     @JsonView(View.Summary.class)
     private Integer reps;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "workoutId", referencedColumnName = "workoutId")
     private Workout workout;
 
