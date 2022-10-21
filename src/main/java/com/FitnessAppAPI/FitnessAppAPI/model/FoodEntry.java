@@ -20,7 +20,7 @@ public class FoodEntry {
 //    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //    @JoinColumn(name = "app_user_username")
 //    @JoinColumn(name = "id", referencedColumnName = "id",insertable = false, updatable = false)
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private AppUser appUser;
     private String username;
