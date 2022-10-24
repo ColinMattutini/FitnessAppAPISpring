@@ -25,7 +25,7 @@ public class CalorieGoalController {
         return calorieGoalRepo.save(calorieGoal);
     }
 
-    @PutMapping("caloriegoal/{username}")
+    @PutMapping("/caloriegoal/{username}")
     public void updateCalorieGoal(@RequestBody CalorieGoal calorieGoal, @PathVariable String username){
         calorieGoalService.updateCalorieGoal(calorieGoal);
     }
