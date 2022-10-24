@@ -47,6 +47,15 @@ public class AppUserController {
         return ResponseEntity.ok().body(appUserService.getAppUsers());
     }
 
+    @GetMapping("/users/{username}")
+    @ResponseBody
+    public Map<String, String> getFirstName(@PathVariable String username){
+        String name = appUserService.getFirstName(username);
+        Map<String, String> map = new HashMap<>();
+        map.put("Firstname", name);
+        return map;
+    }
+
     @PostMapping("/role/save")
     public ResponseEntity<Role> saveRole(@RequestBody Role role){
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/role/save").toUriString());
@@ -94,8 +103,6 @@ public class AppUserController {
             throw new RuntimeException("Refresh Token Missing.");
         }
     }
-
-
 }
 
 @Data
