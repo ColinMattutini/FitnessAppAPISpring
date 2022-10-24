@@ -69,6 +69,12 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
+    public String getFirstName(String username) {
+        String name = getAppUser(username).getFirstName();
+        return name;
+    }
+
+    @Override
     public void addRoleToAppUser(String username, String roleName) {
         AppUser appUser = appUserRepo.findByUsername(username);
         Role role = roleRepo.findByName(roleName);
