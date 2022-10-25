@@ -32,4 +32,10 @@ public class GoalController {
         AppUser appUser = appUserService.getAppUser(username);
         return goalService.findUserGoals(appUser);
     }
+
+    @PutMapping("/goal/{username}")
+    public void updateGoal(@RequestBody Goal goal, @PathVariable String username){
+        AppUser appUser = appUserService.getAppUser(username);
+        goalService.updateGoal(goal, appUser);
+    }
 }
