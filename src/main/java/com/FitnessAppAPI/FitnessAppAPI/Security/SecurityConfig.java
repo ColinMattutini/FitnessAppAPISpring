@@ -30,14 +30,14 @@ public class SecurityConfig {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final AuthenticationConfiguration configuration;
     @Bean
-    @CrossOrigin(origins = "http://localhost:3000/**")
+    @CrossOrigin(origins = "https://regal-taiyaki-7ce8fc.netlify.app")
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManager());
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         http.cors().and().csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/api/login/**", "/api/user/save/**", "/api/role/save/**", "/api/token/refresh/**").permitAll();
-        http.authorizeRequests().antMatchers("/api/users/**", "/api/user/{username}/foodEntry", "/api/user/{username}/foodEntry/**").hasAnyAuthority("ROLE_USER");
+        http.authorizeRequests().antMatchers("/api/users/**", "/api/user/{username}/foodEntry", "/api/user/{username}/foodEntry/**", "/api/caloriegoal/**", "/api/user/{username}/workout", "/api/user/{username}/workout/**", "/api/user/{username}/workout/{workoutId}/exercise", "/api/goal/{username}").hasAnyAuthority("ROLE_USER");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
         http.addFilter(customAuthenticationFilter);
@@ -57,7 +57,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){
         final CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:3000/homepage"));
+        config.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:3000/calorietrackerpage", "http://localhost:3000/workoutpage", "https://regal-taiyaki-7ce8fc.netlify.app"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "DELETE", "PUT"));
         config.setAllowCredentials(true);
         config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Control-Type", "Content-Type"));
