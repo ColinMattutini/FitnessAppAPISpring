@@ -22,18 +22,10 @@ public class CalorieGoal {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private AppUser appUser;
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "username", referencedColumnName = "username", insertable = false, updatable = false)
-//    private AppUser appUser;
 
-
-//
-//    public AppUser getAppUser(){
-//        return appUser;
-//    }
-//
-//    public void setAppUser(AppUser appUser){
-//        this.appUser = appUser;
-//    }
-//    private String username;
+    public CalorieGoal(AppUser appUser){
+        this.calorieGoal = 2400;
+        this.username = appUser.getUsername();
+        this.appUser = appUser;
+    }
 }

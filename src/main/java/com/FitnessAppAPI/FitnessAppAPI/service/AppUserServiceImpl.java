@@ -1,7 +1,6 @@
 package com.FitnessAppAPI.FitnessAppAPI.service;
 
-import com.FitnessAppAPI.FitnessAppAPI.model.AppUser;
-import com.FitnessAppAPI.FitnessAppAPI.model.Role;
+import com.FitnessAppAPI.FitnessAppAPI.model.*;
 import com.FitnessAppAPI.FitnessAppAPI.repo.AppUserRepo;
 import com.FitnessAppAPI.FitnessAppAPI.repo.RoleRepo;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +25,8 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
 
     private final AppUserRepo appUserRepo;
     private final RoleRepo roleRepo;
+    private final CalorieGoalServiceImpl calorieGoalService;
+    private final GoalServiceImpl goalService;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -53,8 +54,15 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
         appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
         String username = appUser.getUsername();
         appUserRepo.save(appUser);
-
         addRoleToAppUser(username, "ROLE_USER");
+        CalorieGoal calorieGoal = new CalorieGoal(appUser);
+        calorieGoalService.saveCalorieGoal(calorieGoal);
+        Goal goal1 = new Goal(GoalType.SLEEP, appUser);
+        Goal goal2 = new Goal(GoalType.WATER, appUser);
+        Goal goal3 = new Goal(GoalType.STEPS, appUser);
+        goalService.saveGoal(goal1, appUser.getUsername());
+        goalService.saveGoal(goal2, appUser.getUsername());
+        goalService.saveGoal(goal3, appUser.getUsername());
         return appUser;
     }
 

@@ -18,12 +18,11 @@ import java.util.Optional;
 public class CalorieGoalServiceImpl implements CalorieGoalService{
 
     private final CalorieGoalRepo calorieGoalRepo;
-    private final AppUserServiceImpl appUserService;
+
 
     @Override
-    public CalorieGoal saveCalorieGoal(CalorieGoal calorieGoal) {
-//        AppUser appUser = appUserRepo.findByUsername(username);
-        return calorieGoalRepo.save(calorieGoal);
+    public void saveCalorieGoal(CalorieGoal calorieGoal) {
+        calorieGoalRepo.save(calorieGoal);
     }
 
     @Override
@@ -45,8 +44,7 @@ public class CalorieGoalServiceImpl implements CalorieGoalService{
             calorieGoalRepo.save(calorieGoalToUpdate);
 
         } else{
-            calorieGoal.setAppUser(appUserService.getAppUser(calorieGoal.getUsername()));
-            calorieGoalRepo.save(calorieGoal);
+            throw new IllegalArgumentException("No goal found!");
         }
     }
 
