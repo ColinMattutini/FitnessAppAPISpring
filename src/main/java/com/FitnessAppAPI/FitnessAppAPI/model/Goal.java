@@ -28,4 +28,9 @@ public class Goal {
     @JoinColumn(name = "id", referencedColumnName = "id")
     private AppUser appUser;
 
+    public Goal(GoalType goalType, AppUser appUser){
+        this.goalNumber = 0;
+        this.goalType = goalType;
+        this.appUser = appUser;
+    }
 }
