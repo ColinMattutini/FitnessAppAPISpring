@@ -17,11 +17,10 @@ public class GoalServiceImpl implements GoalService{
 
     @Autowired
     GoalRepo goalRepo;
-    AppUserServiceImpl appUserService;
+
 
     @Override
     public void saveGoal(Goal goal, String username) {
-
         goalRepo.save(goal);
     }
 
