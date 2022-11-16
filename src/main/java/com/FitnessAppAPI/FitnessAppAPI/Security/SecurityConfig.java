@@ -57,7 +57,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){
         final CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:3000/calorietrackerpage", "http://localhost:3000/workoutpage", "https://regal-taiyaki-7ce8fc.netlify.app", "https://regal-taiyaki-7ce8fc.netlify.app/workoutpage", "https://regal-taiyaki-7ce8fc.netlify.app/calorietrackerpage"));
+        config.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:3000/calorietrackerpage", "http://localhost:3000/workoutpage", "https://fitness-go-app.netlify.app"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "DELETE", "PUT"));
         config.setAllowCredentials(true);
         config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Control-Type", "Content-Type"));
